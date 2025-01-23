@@ -86,5 +86,7 @@
     <a href="#research">Research</a>
     <a href="#podcasts">Podcasts</a>
     <a href="#about">About</a>
-    <span class="search-icon">🔍</span>
+    <span class="search-icon">
+        <i class="bi bi-search"></i>
+    </span>
 </nav>
