@@ -11,6 +11,7 @@
     .logo {
         display: flex;
         align-items: center;
+        color:#f7c32d
     }
 
     .logo svg {
@@ -25,6 +26,32 @@
     }
 
     .social-icons i {
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f7c32d;
+        padding: 10px;
+    }
+
+    .navbar a {
+        color: black;
+        text-decoration: none;
+        margin: 0 15px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .navbar a:hover {
+        text-decoration: underline;
+    }
+
+    .navbar .search-icon {
+        margin-left: auto;
         font-size: 20px;
         cursor: pointer;
     }
@@ -49,3 +76,15 @@
         </div>
     </div>
 </div>
+
+<nav class="navbar">
+    <a href="#news">News</a>
+    <a href="#indices">Indices</a>
+    <a href="#in-depth">In Depth</a>
+    <a href="#learn">Learn</a>
+    <a href="#crypto-bonus">Crypto Bonus</a>
+    <a href="#research">Research</a>
+    <a href="#podcasts">Podcasts</a>
+    <a href="#about">About</a>
+    <span class="search-icon">🔍</span>
+</nav>
