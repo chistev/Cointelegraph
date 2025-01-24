@@ -93,6 +93,11 @@
         margin-top: 10px;
     }
 
+    .featured-article .overlay .meta span:first-child {
+    color: #f7c32d;
+    font-weight: bold;
+}
+
     .navigation-arrows {
         position: absolute;
         bottom: 10px;
