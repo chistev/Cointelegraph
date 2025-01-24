@@ -2,6 +2,7 @@
 	import Logo from "$lib/components/home/Logo.svelte";
 	import SidePanel from "$lib/components/home/SidePanel.svelte";
 </script>
+
 <style>
     .header {
         display: flex;
@@ -91,6 +92,33 @@
         font-size: 14px;
         margin-top: 10px;
     }
+
+    .navigation-arrows {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        display: flex;
+        gap: 10px;
+    }
+
+    .navigation-arrows .arrow {
+        background-color: rgba(0, 0, 0, 0.7);
+        border: none;
+        color: white;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    .navigation-arrows .arrow:hover {
+        background-color: #f7c32d;
+        color: black;
+    }
 </style>
 
 <div class="header">
@@ -120,7 +148,6 @@
 </nav>
 
 <div class="main-content">
-    <!-- Featured Article -->
     <div class="featured-article">
         <img src="https://images.cointelegraph.com/cdn-cgi/image/format=auto,onerror=redirect,quality=90,width=740/https://s3.magazine.cointelegraph.com/magazine/wp-content/uploads/2025/01/magazine-Theyve-solved-cryptos-janky-UX-problem-Part-1-Inteoperabilty-scaled.jpg" alt="Placeholder Image">
         <div class="overlay">
@@ -128,6 +155,11 @@
             <div class="meta">
                 <span>Latest News</span> | <span>by Mehab Qureshi</span> | <span>3 hours ago</span>
             </div>
+        </div>
+
+        <div class="navigation-arrows">
+            <button class="arrow left"><i class="bi bi-chevron-left"></i></button>
+            <button class="arrow right"><i class="bi bi-chevron-right"></i></button>
         </div>
     </div>
 
