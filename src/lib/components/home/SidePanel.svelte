@@ -82,6 +82,11 @@
         gap: 5px;
         margin-left: 20px;
     }
+
+    /* New style for bold first article */
+    .first-article h3 {
+        font-weight: bold;
+    }
 </style>
 
 <div class="side-panel">
@@ -102,16 +107,16 @@
 
     <div class="article-list">
         {#if activeTab === 'Editor'}
-            {#each editorsChoice as article}
-                <div class="article">
+            {#each editorsChoice as article, index}
+                <div class="article {index === 0 ? 'first-article' : ''}">
                     <div class="details">
                         <h3>{article.title}</h3>
                     </div>
                 </div>
             {/each}
         {:else if activeTab === 'Hot'}
-            {#each hotStories as article}
-                <div class="article">
+            {#each hotStories as article, index}
+                <div class="article {index === 0 ? 'first-article' : ''}">
                     <div class="details">
                         <h3>{article.title}</h3>
                         <div class="views">
@@ -123,5 +128,4 @@
             {/each}
         {/if}
     </div>
-        
 </div>
