@@ -1,7 +1,60 @@
 <script>
-	import FeaturedArticle from "$lib/components/home/FeaturedArticle.svelte";
+    import FeaturedArticle from "$lib/components/home/FeaturedArticle.svelte";
 	import Logo from "$lib/components/home/Logo.svelte";
-	import SidePanel from "$lib/components/home/SidePanel.svelte";
+    import SidePanel from "$lib/components/home/SidePanel.svelte";
+
+    let editorIndex = 0; // Track the bold article in the 'Editor' tab
+    let hotIndex = 0; // Track the bold article in the 'Hot' tab
+    let activeTab = 'Editor';
+
+    const hotStories = [
+        { title: "Bitcoin drops after Trump signs crypto and ‘national digital asset stockpile’ executive order", views: 32951 },
+        { title: "WazirX gets Singapore court approval to repay victims of $235M hack", views: 19008 },
+        { title: "Upbit, Bithumb compensate users after service outages during martial law", views: 18884 },
+        { title: "‘Bitcoin reserve or nothing’ — Ripple slammed for pushing multi-asset reserve", views: 18669 },
+        { title: "SEC cancels controversial crypto accounting rule SAB 121", views: 18365 },
+    ];
+
+    const editorsChoice = [
+        { title: "Ethereum whales add $1B in ETH — Is the accumulation trend hinting at a $5K ETH price?" },
+        { title: "They solved crypto’s janky UX problem. You just haven’t noticed yet" },
+        { title: "Can the law keep up with Musk and DOGE?" },
+        { title: "House Democrats want ethics probe on Trump over crypto projects" },
+        { title: "House Democrats want ethics probe on Trump over crypto projects" },
+    ];
+
+    // The goRight and goLeft functions that handle the navigation
+    function goRight() {
+        if (activeTab === 'Editor') {
+            editorIndex++;
+            if (editorIndex >= editorsChoice.length) {
+                activeTab = 'Hot';  // Switch to Hot stories when reaching the end
+                editorIndex = 0;    // Start from the first article in the new tab
+            }
+        } else {
+            hotIndex++;
+            if (hotIndex >= hotStories.length) {
+                activeTab = 'Editor'; // Switch to Editor's choice when reaching the end
+                hotIndex = 0;         // Start from the first article in the new tab
+            }
+        }
+    }
+
+    function goLeft() {
+        if (activeTab === 'Editor') {
+            editorIndex--;
+            if (editorIndex < 0) {
+                activeTab = 'Hot';  // Switch to Hot stories when reaching the start
+                editorIndex = editorsChoice.length - 1;  // Start from the last article in the new tab
+            }
+        } else {
+            hotIndex--;
+            if (hotIndex < 0) {
+                activeTab = 'Editor'; // Switch to Editor's choice when reaching the start
+                hotIndex = hotStories.length - 1; // Start from the last article in the new tab
+            }
+        }
+    }
 </script>
 
 <style>
@@ -90,7 +143,9 @@
     author="Mehab Qureshi"
     timeAgo="3 hours ago"
     imageUrl="https://images.cointelegraph.com/cdn-cgi/image/format=auto,onerror=redirect,quality=90,width=740/https://s3.magazine.cointelegraph.com/magazine/wp-content/uploads/2025/01/magazine-Theyve-solved-cryptos-janky-UX-problem-Part-1-Inteoperabilty-scaled.jpg" 
+    onGoLeft={goLeft}    
+        onGoRight={goRight}
   />
 
-    <SidePanel/>
+  <SidePanel {activeTab} {editorIndex} {hotIndex} {goLeft} {goRight} />
 </div>

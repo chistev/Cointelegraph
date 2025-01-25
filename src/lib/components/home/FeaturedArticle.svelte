@@ -3,6 +3,9 @@
     export let author = "Mehab Qureshi";
     export let timeAgo = "3 hours ago";
     export let imageUrl = "https://images.cointelegraph.com/cdn-cgi/image/format=auto,onerror=redirect,quality=90,width=740/https://s3.magazine.cointelegraph.com/magazine/wp-content/uploads/2025/01/magazine-Theyve-solved-cryptos-janky-UX-problem-Part-1-Inteoperabilty-scaled.jpg"; 
+
+    export let onGoLeft;
+    export let onGoRight;
   </script>
   
   <style>
@@ -79,15 +82,14 @@
   <div class="featured-article">
     <img src={imageUrl} alt="Placeholder Image">
     <div class="overlay">
-      <h2>{title}</h2>
-      <div class="meta">
-        <span>Latest News</span> | <span>by {author}</span> | <span>{timeAgo}</span>
-      </div>
+        <h2>{title}</h2>
+        <div class="meta">
+            <span>Latest News</span> | <span>by {author}</span> | <span>{timeAgo}</span>
+        </div>
     </div>
-  
+
     <div class="navigation-arrows">
-      <button class="arrow left"><i class="bi bi-chevron-left"></i></button>
-      <button class="arrow right"><i class="bi bi-chevron-right"></i></button>
+        <button class="arrow left" on:click={onGoLeft}><i class="bi bi-chevron-left"></i></button>
+        <button class="arrow right" on:click={onGoRight}><i class="bi bi-chevron-right"></i></button>
     </div>
-  </div>
-  
+</div>

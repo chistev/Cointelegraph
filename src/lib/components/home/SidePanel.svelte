@@ -1,5 +1,7 @@
 <script>
-    let activeTab = 'Editor';
+    export let activeTab = 'Editor';
+    export let editorIndex = 0;
+    export let hotIndex = 0;
 
     const hotStories = [
         { title: "Bitcoin drops after Trump signs crypto and ‘national digital asset stockpile’ executive order", views: 32951 },
@@ -16,6 +18,38 @@
         { title: "House Democrats want ethics probe on Trump over crypto projects" },
         { title: "House Democrats want ethics probe on Trump over crypto projects" },
     ];
+
+    function goRight() {
+        if (activeTab === 'Editor') {
+            editorIndex++;
+            if (editorIndex >= editorsChoice.length) {
+                activeTab = 'Hot';
+                editorIndex = 0;
+            }
+        } else {
+            hotIndex++;
+            if (hotIndex >= hotStories.length) {
+                activeTab = 'Editor';
+                hotIndex = 0;
+            }
+        }
+    }
+
+    function goLeft() {
+        if (activeTab === 'Editor') {
+            editorIndex--;
+            if (editorIndex < 0) {
+                activeTab = 'Hot';
+                editorIndex = editorsChoice.length - 1;
+            }
+        } else {
+            hotIndex--;
+            if (hotIndex < 0) {
+                activeTab = 'Editor';
+                hotIndex = hotStories.length - 1;
+            }
+        }
+    }
 </script>
 
 <style>
@@ -108,7 +142,7 @@
     <div class="article-list">
         {#if activeTab === 'Editor'}
             {#each editorsChoice as article, index}
-                <div class="article {index === 0 ? 'first-article' : ''}">
+                <div class="article {index === editorIndex ? 'first-article' : ''}">
                     <div class="details">
                         <h3>{article.title}</h3>
                     </div>
@@ -116,7 +150,7 @@
             {/each}
         {:else if activeTab === 'Hot'}
             {#each hotStories as article, index}
-                <div class="article {index === 0 ? 'first-article' : ''}">
+                <div class="article {index === hotIndex ? 'first-article' : ''}">
                     <div class="details">
                         <h3>{article.title}</h3>
                         <div class="views">
