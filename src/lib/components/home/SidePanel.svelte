@@ -2,7 +2,7 @@
     export let activeTab = 'Editor';
     export let editorIndex = 0;
     export let hotIndex = 0;
-
+    
     const hotStories = [
         { title: "Bitcoin drops after Trump signs crypto and ‘national digital asset stockpile’ executive order", views: 32951 },
         { title: "WazirX gets Singapore court approval to repay victims of $235M hack", views: 19008 },
@@ -18,38 +18,6 @@
         { title: "House Democrats want ethics probe on Trump over crypto projects" },
         { title: "House Democrats want ethics probe on Trump over crypto projects" },
     ];
-
-    function goRight() {
-        if (activeTab === 'Editor') {
-            editorIndex++;
-            if (editorIndex >= editorsChoice.length) {
-                activeTab = 'Hot';
-                editorIndex = 0;
-            }
-        } else {
-            hotIndex++;
-            if (hotIndex >= hotStories.length) {
-                activeTab = 'Editor';
-                hotIndex = 0;
-            }
-        }
-    }
-
-    function goLeft() {
-        if (activeTab === 'Editor') {
-            editorIndex--;
-            if (editorIndex < 0) {
-                activeTab = 'Hot';
-                editorIndex = editorsChoice.length - 1;
-            }
-        } else {
-            hotIndex--;
-            if (hotIndex < 0) {
-                activeTab = 'Editor';
-                hotIndex = hotStories.length - 1;
-            }
-        }
-    }
 </script>
 
 <style>

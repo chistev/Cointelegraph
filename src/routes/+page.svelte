@@ -147,5 +147,5 @@
         onGoRight={goRight}
   />
 
-  <SidePanel {activeTab} {editorIndex} {hotIndex} {goLeft} {goRight} />
+  <SidePanel {activeTab} {editorIndex} {hotIndex} />
 </div>
