@@ -1,19 +1,39 @@
-  <style>
+<script>
+    let activeTab = 'Editor';
+
+    const hotStories = [
+        { title: "Bitcoin drops after Trump signs crypto and ‘national digital asset stockpile’ executive order", views: 32951 },
+        { title: "WazirX gets Singapore court approval to repay victims of $235M hack", views: 19008 },
+        { title: "Upbit, Bithumb compensate users after service outages during martial law", views: 18884 },
+        { title: "‘Bitcoin reserve or nothing’ — Ripple slammed for pushing multi-asset reserve", views: 18669 },
+        { title: "SEC cancels controversial crypto accounting rule SAB 121", views: 18365 },
+    ];
+
+    const editorsChoice = [
+        { title: "Ethereum whales add $1B in ETH — Is the accumulation trend hinting at a $5K ETH price?" },
+        { title: "They solved crypto’s janky UX problem. You just haven’t noticed yet" },
+        { title: "Can the law keep up with Musk and DOGE?" },
+        { title: "House Democrats want ethics probe on Trump over crypto projects" },
+        { title: "House Democrats want ethics probe on Trump over crypto projects" },
+    ];
+</script>
+
+<style>
     .side-panel {
         flex: 1;
         display: flex;
         flex-direction: column;
         gap: 10px;
     }
-  
-    .side-panel .tab-buttons {
+
+    .tab-buttons {
         display: flex;
         justify-content: space-between;
         border-bottom: 2px solid #f7c32d;
         margin-bottom: 10px;
     }
-  
-    .side-panel .tab-buttons button {
+
+    .tab-buttons button {
         flex: 1;
         background: none;
         border: none;
@@ -23,66 +43,85 @@
         cursor: pointer;
         border-bottom: 2px solid transparent;
     }
-  
-    .side-panel .tab-buttons button.active {
+
+    .tab-buttons button.active {
         border-bottom: 2px solid #f7c32d;
     }
-  
-    .side-panel .article-list {
+
+    .article-list {
         display: flex;
         flex-direction: column;
         gap: 10px;
     }
-  
-    .side-panel .article-list .article {
+
+    .article {
         display: flex;
-        gap: 10px;
-        align-items: center;
+        flex-direction: column;
+        gap: 5px;
     }
-  
-    .side-panel .article-list .article .details {
+
+    .details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 20px;
         font-size: 14px;
     }
-  
-    .side-panel .article-list .article .details h3 {
+
+    .details h3 {
         margin: 20px;
         font-size: 15px;
-        font-weight: bold;
+        flex: 1;
     }
-  </style>
-  
-  <div class="side-panel">
-      <div class="tab-buttons">
-          <button class="active">Editor's Choice</button>
-          <button>Hot Stories</button>
-      </div>
-  
-      <div class="article-list">
-          <div class="article">
-              <div class="details">
-                  <h3>Ethereum whales add $1B in ETH — Is the accumulation trend hinting at a $5K ETH price?</h3>
-              </div>
-          </div>
-          <div class="article">
-              <div class="details">
-                  <h3>They solved crypto’s janky UX problem. You just haven’t noticed yet</h3>
-              </div>
-          </div>
-          <div class="article">
-              <div class="details">
-                  <h3>Can the law keep up with Musk and DOGE?</h3>
-              </div>
-          </div>
-          <div class="article">
-              <div class="details">
-                  <h3>House Democrats want ethics probe on Trump over crypto projects</h3>
-              </div>
-          </div>
-          <div class="article">
-              <div class="details">
-                  <h3>House Democrats want ethics probe on Trump over crypto projects</h3>
-              </div>
-          </div>
-      </div>
-  </div>
-  
+
+    .views {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        color: gray;
+        gap: 5px;
+        margin-left: 20px;
+    }
+</style>
+
+<div class="side-panel">
+    <div class="tab-buttons">
+        <button
+            class:active={activeTab === 'Editor'}
+            on:click={() => (activeTab = 'Editor')}
+        >
+            Editor's Choice
+        </button>
+        <button
+            class:active={activeTab === 'Hot'}
+            on:click={() => (activeTab = 'Hot')}
+        >
+            Hot Stories
+        </button>
+    </div>
+
+    <div class="article-list">
+        {#if activeTab === 'Editor'}
+            {#each editorsChoice as article}
+                <div class="article">
+                    <div class="details">
+                        <h3>{article.title}</h3>
+                    </div>
+                </div>
+            {/each}
+        {:else if activeTab === 'Hot'}
+            {#each hotStories as article}
+                <div class="article">
+                    <div class="details">
+                        <h3>{article.title}</h3>
+                        <div class="views">
+                            <span>{article.views}</span>
+                            <i class="bi bi-eye"></i>
+                        </div>
+                    </div>
+                </div>
+            {/each}
+        {/if}
+    </div>
+        
+</div>
