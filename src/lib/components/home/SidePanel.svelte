@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { onMount } from "svelte";
 
     export let activeTab = 'Editor';
@@ -21,7 +21,7 @@
         { title: "House Democrats want ethics probe on Trump over crypto projects" },
     ];
 
-    let intervalId;
+    let intervalId: number;
 
     const changeArticle = () => {
     if (activeTab === 'Editor') {
