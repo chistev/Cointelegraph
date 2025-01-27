@@ -1,4 +1,6 @@
 <script>
+	import { onMount } from "svelte";
+
     export let activeTab = 'Editor';
     export let editorIndex = 0;
     export let hotIndex = 0;
@@ -18,6 +20,28 @@
         { title: "House Democrats want ethics probe on Trump over crypto projects" },
         { title: "House Democrats want ethics probe on Trump over crypto projects" },
     ];
+
+    let intervalId;
+
+    const changeArticle = () => {
+    if (activeTab === 'Editor') {
+      editorIndex = (editorIndex + 1) % editorsChoice.length;
+      if (editorIndex === 0) {
+        activeTab = 'Hot';
+      }
+    } else if (activeTab === 'Hot') {
+      hotIndex = (hotIndex + 1) % hotStories.length;
+      if (hotIndex === 0) {
+        activeTab = 'Editor';
+      }
+    }
+  };
+
+  onMount(() => {
+    intervalId = setInterval(changeArticle, 10000);
+
+    return () => clearInterval(intervalId);
+  });
 </script>
 
 <style>
